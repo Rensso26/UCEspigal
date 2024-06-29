@@ -50,7 +50,6 @@ export default function CoffeeCard({item}) {
               </View>
             </View>
             
-
             <View style={{
               backgroundColor: ios? themeColors.bgDark: 'transparent',
               shadowColor: themeColors.bgDark,

@@ -22,9 +22,7 @@ LogBox.ignoreLogs([
 export default function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        contentStyle: {backgroundColor: 'white'}
-      }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Home" options={{headerShown: false}} component={HomeTabs} />
         <Stack.Screen name="Product" options={{headerShown: false}} component={ProductScreen} />
