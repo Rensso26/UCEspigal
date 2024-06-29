@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Animated, Easing } from 'react-native';
 import { themeColors } from '../theme';
-import logoImage from '../assets/images/coffee1.png'; // Asegúrate de importar tu logo correctamente
+import logoImage from '../assets/images/profile/Logo.png'; // Asegúrate de importar tu logo correctamente
 
 const WelcomeScreen = ({ navigation }) => {
   const spinValue = new Animated.Value(0);
@@ -33,7 +33,7 @@ const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Animated.Image source={logoImage} style={[styles.logo, { transform: [{ rotate: spin }] }]} />
-      <Text style={styles.companyName}>Nombre de tu Empresa</Text>
+      <Text style={styles.companyName}>UCEspigal</Text>
     </View>
   );
 };
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     backgroundColor: themeColors.bgLight, // Usar el color de fondo de tu tema
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
     marginBottom: 20,
   },

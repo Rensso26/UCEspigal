@@ -19,19 +19,19 @@ export default function HomeScreen() {
       <StatusBar />
 
       <Image 
-        source={require('../assets/images/beansBackground1.png')} 
+        source={require('../assets/images/background/beansBackground1.png')} 
         style={{height: height*0.2}} 
         className="w-full absolute -top-5 opacity-10" />
       <SafeAreaView className={ios? '-mb-8': ''}>
         {/* avatar and bell icon */}
         <View className="mx-4 flex-row justify-between items-center" >
-          <Image source={require('../assets/images/avatar.png')} 
+          <Image source={require('../assets/images/profile/Logo.png')} 
             className="h-9 w-9 rounded-full" />
           
           <View className="flex-row items-center space-x-2">
             <MapPinIcon size="25" color={themeColors.bgLight} style={{ marginTop: 50 }} />
             <Text className="font-semibold text-base" style={{ marginTop: 50 }}>
-              Quito-Ecuador
+              UCEspigal, Quito-Ecuador
             </Text>
           </View>
           <BellIcon size="27" color="black" />

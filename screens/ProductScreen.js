@@ -19,7 +19,7 @@ export default function FavouriteScreen(props) {
     <View className="flex-1">
       <StatusBar style="light" />
       <Image 
-        source={require('../assets/images/beansBackground2.png')} 
+        source={require('../assets/images/background/beansBackground2.png')} 
         style={{height: 300, borderBottomLeftRadius: 50, borderBottomRightRadius: 50}} 
         className="w-full absolute" />
       <SafeAreaView className="space-y-4 flex-1">
