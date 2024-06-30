@@ -24,7 +24,6 @@ export default function HomeScreen() {
   return (
     <View className="flex-1 relative bg-white">
       <StatusBar />
-
       <Image
         source={require('../assets/images/background/beansBackground1.png')}
         style={{ height: height * 0.2 }}

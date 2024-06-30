@@ -1,101 +1,206 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../theme';
+import { HomeIcon } from 'react-native-heroicons/outline';
 
 const AboutUsScreen = () => {
+  const navigation = useNavigation();
+
+  const handleHomePress = () => {
+    navigation.navigate('Home');
+  };
+
   return (
-    <View style={styles.container}>
-      <Image source={require('../assets/images/profile/Logo.png')} style={styles.logo} />
-      <View style={styles.content}>
-        <Text style={styles.title}>Bienvenido a UCEspigal</Text>
-        <Text style={styles.description}>
-          Somos una panadería comprometida con la calidad y la frescura de nuestros productos.
-          Disfruta de una experiencia única con nuestros deliciosos panes y café.
-        </Text>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Nuestra Misión</Text>
-          <Text style={styles.sectionContent}>
-            Proveer a nuestros clientes productos de panadería frescos y deliciosos, manteniendo
-            altos estándares de calidad y servicio.
-          </Text>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Nuestros Servicios</Text>
-          <Text style={styles.sectionContent}>
-            Ofrecemos una variedad de panes artesanales y café recién hecho, perfectos para
-            cualquier ocasión.
-          </Text>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Nuestra Visión</Text>
-          <Text style={styles.sectionContent}>
-            Ser reconocidos como la panadería de referencia en calidad y frescura en nuestra comunidad.
-          </Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.iconContainer} onPress={handleHomePress}>
+          <HomeIcon style={styles.homeIcon} size={27} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Nosotros</Text>
+      </View>
+      <View style={styles.profileContainer}>
+        <View style={styles.profileDetails}>
+          <Image
+            source={require('../assets/images/profile/logo_HD.png')}
+            style={styles.profileImage}
+          />
+          <View style={styles.profileTextContainer}>
+            <Text style={styles.profileName}>UCEspigal</Text>
+            <Text style={styles.profileCategory}>Panadería Artesanal</Text>
+            <Text style={styles.profileFollowers}>5,000 seguidores</Text>
+            <View style={styles.followButtonContainer}>
+              <TouchableOpacity style={styles.followButton}>
+                <Text style={styles.followButtonText}>Contáctanos</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Sobre Nosotros</Text>
+        <Text style={styles.sectionText}>
+          UCEspigal es una panadería artesanal dedicada a ofrecer los más deliciosos y frescos productos horneados.
+          Desde nuestros comienzos, nos hemos esforzado por mantener la tradición y calidad en cada una de nuestras recetas.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Nuestra Misión</Text>
+        <Text style={styles.sectionText}>
+          Brindar a nuestras familias y comunidad una experiencia inigualable con productos horneados de la más alta calidad, hechos con amor y dedicación.
+        </Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Destacados</Text>
+        <View style={styles.highlightContainer}>
+          <View style={styles.highlightItem}>
+            <Icon name="calendar" size={24} color={themeColors.text} />
+            <Text style={styles.highlightTitle}> Fundada</Text>
+            <Text style={styles.highlightText}>2024</Text>
+          </View>
+          <View style={styles.highlightItem}>
+            <Icon name="map-marker" size={24} color={themeColors.text} />
+            <Text style={styles.highlightTitle}> Ubicación</Text>
+            <Text style={styles.highlightText}>Quito-Ecuador</Text>
+          </View>
+          <View style={styles.highlightItem}>
+            <Icon name="users" size={24} color={themeColors.text} />
+            <Text style={styles.highlightTitle}> Empleados</Text>
+            <Text style={styles.highlightText}>50+</Text>
+          </View>
+          <View style={styles.highlightItem}>
+            <Icon name="globe" size={24} color={themeColors.text} />
+            <Text style={styles.highlightTitle}> Página Web</Text>
+            <Text style={styles.highlightText}>ucespigal.com</Text>
+          </View>
+        </View>
+      </View>
+
+      <Text style={styles.sectionTitle}>Equipo</Text>
       <View style={styles.profileImagesContainer}>
         <View style={styles.profile}>
-          <Image source={require('../assets/images/profile/bob.jpg')} style={styles.profileImage} />
-          <Text style={styles.profileName}>Freddy Tappia</Text>
+          <Image source={require('../assets/images/profile/bob.jpg')} style={styles.profileImageSmall} />
+          <Text style={styles.profileNameSmall}>Freddy Tappia</Text>
         </View>
         <View style={styles.profile}>
-          <Image source={require('../assets/images/profile/profile_HD.png')} style={styles.profileImage} />
-          <Text style={styles.profileName}>B4LB3R1TH</Text>
+          <Image source={require('../assets/images/profile/profile_HD.png')} style={styles.profileImageSmall} />
+          <Text style={styles.profileNameSmall}>B4LB3R1TH</Text>
         </View>
         <View style={styles.profile}>
-          <Image source={require('../assets/images/profile/avatar.png')} style={styles.profileImage} />
-          <Text style={styles.profileName}>Rensso Parra</Text>
+          <Image source={require('../assets/images/profile/avatar.png')} style={styles.profileImageSmall} />
+          <Text style={styles.profileNameSmall}>Rensso Parra</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: themeColors.bgLight,
-    alignItems: 'center',
+    flexGrow: 1,
+    backgroundColor: '#f8fafc',
+    padding: 20,
+  },
+  header: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  logo: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    marginBottom: 20,
-  },
-  content: {
     alignItems: 'center',
+    paddingVertical: 20,
+    position: 'relative',
   },
-  title: {
+  iconContainer: {
+    position: 'absolute',
+    left: 10,
+  },
+  homeIcon: {
+    // Se puede agregar cualquier estilo adicional si es necesario
+  },
+  headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: themeColors.textDark,
-    marginBottom: 10,
-    textAlign: 'center',
+    color: themeColors.text,
   },
-  description: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: themeColors.textDark,
-    lineHeight: 24,
-    marginBottom: 20,
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 20,
   },
-  section: {
-    marginBottom: 20,
+  profileDetails: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  sectionTitle: {
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginRight: 20,
+  },
+  profileTextContainer: {
+    flexDirection: 'column',
+  },
+  profileName: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: themeColors.text,
+  },
+  profileCategory: {
+    fontSize: 20,
+    color: themeColors.bgDark,
+  },
+  profileFollowers: {
+    fontSize: 20,
+    color: themeColors.bgDark,
+  },
+  followButtonContainer: {
+    marginTop: 10,
+  },
+  followButton: {
+    backgroundColor: themeColors.surface,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+  },
+  followButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: themeColors.primary,
-    marginBottom: 8,
+    color: themeColors.text,
     textAlign: 'center',
   },
-  sectionContent: {
-    fontSize: 14,
-    color: themeColors.textDark,
-    textAlign: 'center',
+  section: {
+    marginVertical: 12,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: themeColors.text,
+    marginBottom: 10,
+  },
+  sectionText: {
+    fontSize: 18,
+    color: themeColors.text,
+  },
+  highlightContainer: {
+    flexDirection: 'column',
+  },
+  highlightItem: {
+    flexBasis: '50%',
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  highlightTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: themeColors.text,
+    marginLeft: 10,
+  },
+  highlightText: {
+    fontSize: 18,
+    color: themeColors.bgDark,
+    marginLeft: 10,
   },
   profileImagesContainer: {
     flexDirection: 'row',
@@ -107,15 +212,15 @@ const styles = StyleSheet.create({
   profile: {
     alignItems: 'center',
   },
-  profileImage: {
+  profileImageSmall: {
     width: 80,
     height: 80,
     borderRadius: 40,
   },
-  profileName: {
+  profileNameSmall: {
     marginTop: 8,
-    fontSize: 14,
-    color: themeColors.textDark,
+    fontSize: 16,
+    color: themeColors.text,
   },
 });
 
