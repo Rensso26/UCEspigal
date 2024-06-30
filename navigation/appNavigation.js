@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomeScreen from '../screens/WelcomeScreen'; 
 import HomeScreen from '../screens/HomeScreen';
+import AboutUsScreen from '../screens/AboutUsScreen';
 import { Dimensions, LogBox, Platform, Text, View } from 'react-native';
 import ProductScreen from '../screens/ProductScreen';
 import { themeColors } from '../theme';
@@ -25,6 +26,7 @@ export default function AppNavigation() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Home" options={{headerShown: false}} component={HomeTabs} />
+        <Stack.Screen name="AboutUs" component={AboutUsScreen} />
         <Stack.Screen name="Product" options={{headerShown: false}} component={ProductScreen} />
       </Stack.Navigator>
     </NavigationContainer>

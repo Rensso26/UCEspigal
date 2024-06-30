@@ -1,26 +1,35 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Animated, Easing } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { themeColors } from '../theme';
-import logoImage from '../assets/images/profile/Logo.png'; // Asegúrate de importar tu logo correctamente
 
 const WelcomeScreen = ({ navigation }) => {
   const spinValue = new Animated.Value(0);
+  const fadeValue = new Animated.Value(0);
 
   useEffect(() => {
     // Animación de rotación del logo
     Animated.loop(
       Animated.timing(spinValue, {
         toValue: 1,
-        duration: 3000,
+        duration: 5500,
         easing: Easing.linear,
         useNativeDriver: true,
       })
     ).start();
 
+    // Animación de aparición del texto
+    Animated.timing(fadeValue, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.inOut(Easing.ease),
+      useNativeDriver: true,
+    }).start();
+
     // Navegar automáticamente a HomeScreen después de cierto tiempo
     const timer = setTimeout(() => {
       navigation.replace('Home');
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer); // Limpiar temporizador al desmontar el componente
   }, []);
@@ -32,8 +41,20 @@ const WelcomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Animated.Image source={logoImage} style={[styles.logo, { transform: [{ rotate: spin }] }]} />
-      <Text style={styles.companyName}>UCEspigal</Text>
+      <View className="bg-white/20 rounded-full p-10">
+        <View className="bg-white/20 rounded-full p-8">
+          <Animated.Image source={require('../assets/images/profile/Logo.png')} style={[styles.logo, { transform: [{ rotate: spin }] }]} />
+        </View>
+      </View>
+
+      <View className="flex items-center space-y-2">
+        <Animated.Text className="font-bold text-white tracking-widest text-6xl" style={{ marginTop: 20, opacity: fadeValue }}>
+          UCEspigal
+        </Animated.Text>
+        <Animated.Text className="font-medium text-white tracking-widest text-lg" style={{ marginBottom: 20, opacity: fadeValue }}>
+          Panaderia/Cafeteria
+        </Animated.Text>
+      </View>
     </View>
   );
 };
@@ -43,18 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: themeColors.bgLight, // Usar el color de fondo de tu tema
+    backgroundColor: themeColors.bgLight,
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 160,
+    height: 160,
     resizeMode: 'contain',
     marginBottom: 20,
-  },
-  companyName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: themeColors.text, // Usar el color de texto de tu tema
   },
 });
 
