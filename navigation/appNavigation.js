@@ -6,7 +6,6 @@ import HomeScreen from '../screens/HomeScreen';
 import AboutUsScreen from '../screens/AboutUsScreen';
 import { Dimensions, LogBox, Platform, Text, View } from 'react-native';
 import ProductScreen from '../screens/ProductScreen';
-import CartScreen from '../screens/CartScreen';
 import { themeColors } from '../theme';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -60,7 +59,7 @@ function HomeTabs(){
       >
       <Tab.Screen name="home" component={HomeScreen} />
       <Tab.Screen name="favourite" component={HomeScreen} />
-      <Tab.Screen name="cart" component={CartScreen} />
+      <Tab.Screen name="cart" component={HomeScreen} />
     </Tab.Navigator>
   )
 }
