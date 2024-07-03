@@ -1,5 +1,3 @@
-// colors.js
-
 export const tierra = {
     bgColor: opacity => `rgba(112, 66, 20, ${opacity})`,
     bgLight: '#d4a574',
