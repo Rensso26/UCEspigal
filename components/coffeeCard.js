@@ -14,7 +14,7 @@ export default function CoffeeCard({item}) {
         style={{
           borderRadius: 40, 
           backgroundColor: themeColors.bgDark, 
-          height: ios? height*0.4 : height*0.55, 
+          height: ios? height*0.4 : height*0.52, 
           width: width*0.68,
         }} 
         >
@@ -42,12 +42,12 @@ export default function CoffeeCard({item}) {
                 <StarIcon size="15" color="white" />
                 <Text className="text-base font-semibold text-white">{item.stars}</Text>
               </View>
-              <View className="flex-row space-x-1 z-10 mb-6">
+              {/* <View className="flex-row space-x-1 z-10 mb-6">
                 <Text className="text-base text-white font-semibold opacity-60">
                   Volume 
                 </Text>
                 <Text className="text-base text-white font-semibold"> {item.volume}</Text>
-              </View>
+              </View> */}
             </View>
             
             <View style={{

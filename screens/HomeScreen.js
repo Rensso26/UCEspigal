@@ -3,17 +3,20 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { themeColors } from '../theme';
 import { StatusBar } from 'expo-status-bar';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { categories, coffeeItems, empanadaItems, panDulceItems, panTradicionalItems, pastelItems, sandwichItems } from '../constants/data';
+import { categories } from '../constants/data';
+import { coffeeItems } from '../constants/coffeeItems';
+import { empanadaItems } from '../constants/empanadaItems';
+import { panDulceItems } from '../constants/panDulceItems';
+import { panTradicionalItems } from '../constants/panTradicionalItems';
+import { pastelItems } from '../constants/pastelItems';
+import { sandwichItems } from '../constants/sandwichItems';
 import Carousel from 'react-native-snap-carousel';
 import CoffeeCard from '../components/coffeeCard';
-import { QuestionMarkCircleIcon, MapPinIcon } from 'react-native-heroicons/outline';
+import { QuestionMarkCircleIcon, MapPinIcon, Cog6ToothIcon  } from 'react-native-heroicons/outline';
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
-
-const cacheKey = 'displayItemsCache';
 
 export default function HomeScreen() {
   const [activeCategory, setActiveCategory] = useState(1);
@@ -21,57 +24,49 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
-  const handleBellPress = () => {
-    navigation.navigate('AboutUs');
+  const handleSettingsPress = () => {
+    navigation.navigate('Settings');
   };
 
   useEffect(() => {
     loadItems(activeCategory);
   }, [activeCategory]);
 
-  const loadItems = async (category) => {
+  const loadItems = (category) => {
     setLoading(true);
-    const cachedItems = await AsyncStorage.getItem(`${cacheKey}-${category}`);
-    
-    if (cachedItems) {
-      setDisplayItems(JSON.parse(cachedItems));
-      setLoading(false);
-    } else {
-      setTimeout(async () => {
-        let items;
-        switch (category) {
-          case 1:
-            items = empanadaItems;
-            break;
-          case 2:
-            items = panDulceItems;
-            break;
-          case 3:
-            items = panTradicionalItems;
-            break;
-          case 4:
-            items = pastelItems;
-            break;
-          case 5:
-            items = sandwichItems;
-            break;
-          case 6:
-            items = coffeeItems;
-            break;
-          default:
-            items = empanadaItems;
-        }
+    setTimeout(() => {
+      let items;
+      switch (category) {
+        case 1:
+          items = empanadaItems;
+          break;
+        case 2:
+          items = panDulceItems;
+          break;
+        case 3:
+          items = panTradicionalItems;
+          break;
+        case 4:
+          items = pastelItems;
+          break;
+        case 5:
+          items = sandwichItems;
+          break;
+        case 6:
+          items = coffeeItems;
+          break;
+        default:
+          items = empanadaItems;
+      }
 
-        if (items && items.length > 0) {
-          setDisplayItems(items);
-          await AsyncStorage.setItem(`${cacheKey}-${category}`, JSON.stringify(items));
-        } else {
-          setDisplayItems([]);
-        }
-        
-        setLoading(false);
-      }, 500);
-    }
+      if (items && items.length > 0) {
+        setDisplayItems(items);
+      } else {
+        setDisplayItems([]);
+      }
+      
+      setLoading(false);
+    }, 500);
   };
 
   return (
@@ -91,8 +86,8 @@ export default function HomeScreen() {
               UCEspigal, Quito-Ecuador
             </Text>
           </View>
-          <TouchableOpacity onPress={handleBellPress}>
-            <QuestionMarkCircleIcon size="27" color="black" />
+          <TouchableOpacity onPress={handleSettingsPress}>
+            <Cog6ToothIcon size="27" color="black" />
           </TouchableOpacity>
         </View>
 

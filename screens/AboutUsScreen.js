@@ -8,17 +8,17 @@ import { HomeIcon } from 'react-native-heroicons/outline';
 const AboutUsScreen = () => {
   const navigation = useNavigation();
 
-  const handleHomePress = () => {
-    navigation.navigate('Home');
-  };
+  // const handleHomePress = () => {
+  //   navigation.navigate('Home');
+  // };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.iconContainer} onPress={handleHomePress}>
+        {/* <TouchableOpacity style={styles.iconContainer} onPress={handleHomePress}>
           <HomeIcon style={styles.homeIcon} size={27} color="black" />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Nosotros</Text>
+        <Text style={styles.headerText}>Nosotros</Text> */}
       </View>
       <View style={styles.profileContainer}>
         <View style={styles.profileDetails}>

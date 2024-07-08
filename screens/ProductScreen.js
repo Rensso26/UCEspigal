@@ -57,6 +57,8 @@ export default function FavouriteScreen(props) {
             </Text>
             
         </View>
+
+        
         <View className="px-4 space-y-2">
           <Text style={{color: themeColors.text}} className="text-lg font-bold">Coffee size</Text>
           <View className="flex-row justify-between">
