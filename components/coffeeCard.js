@@ -15,7 +15,7 @@ export default function CoffeeCard({item}) {
           borderRadius: 40, 
           backgroundColor: themeColors.bgDark, 
           height: ios? height*0.4 : height*0.55, 
-          width: width*0.65,
+          width: width*0.68,
         }} 
         >
         <View 
