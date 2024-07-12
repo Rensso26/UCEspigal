@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Asegúrate de tener instalada esta biblioteca
 import { themeColors } from '../theme'; // Importa los colores de tu tema
 
 const CartScreen = () => {
@@ -20,11 +21,16 @@ const CartScreen = () => {
           <TouchableOpacity style={styles.quantityButton}>
             <Text style={styles.quantityButtonText}>-</Text>
           </TouchableOpacity>
-          <TextInput style={styles.quantityInput} value="1" />
+          <TouchableOpacity style={styles.quantityInput}>
+            <Text style={styles.quantityText}>1</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.quantityButton}>
             <Text style={styles.quantityButtonText}>+</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity style={styles.deleteButton}>
+          <Icon name="trash" size={24} color={themeColors.text} />
+        </TouchableOpacity>
       </View>
 
       {/* Item 2 */}
@@ -38,11 +44,16 @@ const CartScreen = () => {
           <TouchableOpacity style={styles.quantityButton}>
             <Text style={styles.quantityButtonText}>-</Text>
           </TouchableOpacity>
-          <TextInput style={styles.quantityInput} value="1" />
+          <TouchableOpacity style={styles.quantityInput}>
+            <Text style={styles.quantityText}>1</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.quantityButton}>
             <Text style={styles.quantityButtonText}>+</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity style={styles.deleteButton}>
+          <Icon name="trash" size={24} color={themeColors.text} />
+        </TouchableOpacity>
       </View>
 
       {/* Item 3 */}
@@ -56,23 +67,30 @@ const CartScreen = () => {
           <TouchableOpacity style={styles.quantityButton}>
             <Text style={styles.quantityButtonText}>-</Text>
           </TouchableOpacity>
-          <TextInput style={styles.quantityInput} value="1" />
+          <TouchableOpacity style={styles.quantityInput}>
+            <Text style={styles.quantityText}>1</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.quantityButton}>
             <Text style={styles.quantityButtonText}>+</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity style={styles.deleteButton}>
+          <Icon name="trash" size={24} color={themeColors.text} />
+        </TouchableOpacity>
       </View>
 
-      {/* Subtotal */}
+      {/* Total */}
       <View style={styles.subtotalContainer}>
-        <Text style={styles.subtotalText}>Subtotal</Text>
-        <Text style={styles.subtotalAmount}>$8,300</Text>
+        <Text style={styles.subtotalText}>Total a pagar</Text>
+        <Text style={styles.subtotalAmount}>$00.00</Text>
       </View>
 
       {/* Proceed to Checkout */}
-      <TouchableOpacity style={styles.checkoutButton}>
-        <Text style={styles.checkoutButtonText}>Proceed to Checkout</Text>
-      </TouchableOpacity>
+      <View style={styles.checkoutButtonContainer}>
+        <TouchableOpacity style={styles.checkoutButton}>
+          <Text style={styles.checkoutButtonText}>Realizar Pedido</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -80,7 +98,7 @@ const CartScreen = () => {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: themeColors.background,
+    backgroundColor: '#f8fafc',
     paddingTop: 20,
   },
   header: {
@@ -103,6 +121,7 @@ const styles = {
     backgroundColor: themeColors.surface,
     borderRadius: 10,
     marginBottom: 12,
+    position: 'relative', // Añadido para la posición absoluta del botón de eliminar
   },
   itemImage: {
     width: 70,
@@ -144,13 +163,22 @@ const styles = {
   },
   quantityInput: {
     width: 40,
-    textAlign: 'center',
-    fontSize: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 30,
     backgroundColor: themeColors.surface,
-    borderWidth: 0,
     borderRadius: 8,
     marginLeft: 5,
     marginRight: 5,
+  },
+  quantityText: {
+    fontSize: 16,
+    color: themeColors.text,
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
   subtotalContainer: {
     flexDirection: 'row',
@@ -172,12 +200,16 @@ const styles = {
     fontSize: 16,
     fontWeight: '500',
   },
+  checkoutButtonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   checkoutButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    width: '80%', // Ajusta el ancho del botón
+    paddingVertical: 15, // Ajusta la altura del botón
     backgroundColor: themeColors.primary,
-    borderRadius: 12,
-    height: 48,
+    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 12,

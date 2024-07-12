@@ -55,64 +55,37 @@ export default function FavouriteScreen(props) {
             <Text style={{color: themeColors.text}} className="text-lg font-semibold">
               $ {item.price}
             </Text>
-            
         </View>
 
-        
-        <View className="px-4 space-y-2">
-          <Text style={{color: themeColors.text}} className="text-lg font-bold">Coffee size</Text>
-          <View className="flex-row justify-between">
-            <TouchableOpacity 
-             onPress={()=> setSize('small')}
-             style={{backgroundColor: size=='small'? themeColors.bgLight: 'rgba(0,0,0,0.07)'}} 
-             className="p-3 px-8 rounded-full">
-              <Text className={size=='small'? "text-white": "text-gray-700"}>Small</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-             onPress={()=> setSize('medium')}
-             style={{backgroundColor: size=='medium'? themeColors.bgLight: 'rgba(0,0,0,0.07)'}}
-              className="p-3 px-8 rounded-full">
-              <Text className={size=='medium'? "text-white": "text-gray-700"}>Medium</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-             onPress={()=> setSize('large')}
-             style={{backgroundColor: size=='large'? themeColors.bgLight: 'rgba(0,0,0,0.07)'}} 
-             className="p-3 px-8 rounded-full">
-              <Text className={size=='large'? "text-white": "text-gray-700"}>Large</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View className="px-4 space-y-2">
-          <Text style={{color: themeColors.text}} className="text-lg font-bold">About</Text>
-          <Text className="text-gray-600">
+        <View className="px-4 space-y-4">
+          {/* <Text style={{color: themeColors.text}} className="text-lg font-bold">Detalle</Text> */}
+          <Text style={{color: themeColors.text, fontSize: 18}} className="text-gray-600">
             {item.desc}
           </Text>
         </View>
-        
-        
 
-        
       </SafeAreaView>
       <View className={`space-y-3 ${ios? 'mb-6': 'mb-3'}`}>
           <View className="flex-row justify-between items-center px-4 mb-2">
               <View className="flex-row items-center space-x-1">
-                <Text className="text-base text-gray-700 font-semibold opacity-60">
-                  Volume 
+                <Text style={{color: themeColors.text, fontSize: 20}} className="text-base text-gray-700 font-semibold opacity-60">
+                  Cantidad 
                 </Text>
-                <Text className="text-base text-black font-semibold"> {item.volume}</Text>
+                {/* <Text className="text-base text-black font-semibold"> {item.volume}</Text> */}
               </View>
               <View 
                 className="flex-row items-center space-x-4 border-gray-500 border rounded-full p-1 px-4">
                 <TouchableOpacity>
                   <MinusIcon size="20" strokeWidth={3} color={themeColors.text} />
                 </TouchableOpacity>
-                <Text style={{color: themeColors.text}} className="font-extrabold text-lg">2</Text>
+                <Text style={{color: themeColors.text}} className="font-extrabold text-lg">1</Text>
                 <TouchableOpacity>
                   <PlusIcon size="20" strokeWidth={3} color={themeColors.text} />
                 </TouchableOpacity>
               </View>
+              
           </View>
+
           {/* buy now button */}
           <View className="flex-row justify-between px-4">
             <TouchableOpacity className="p-4 rounded-full border border-gray-400">
@@ -121,7 +94,7 @@ export default function FavouriteScreen(props) {
             <TouchableOpacity 
               style={{backgroundColor: themeColors.bgLight}} 
               className="p-4 rounded-full flex-1 ml-4">
-              <Text className="text-center text-white text-base font-semibold">Buy now</Text>
+              <Text className="text-center text-white text-base font-semibold">Agregar al carrito</Text>
             </TouchableOpacity>
           </View>
         </View>
