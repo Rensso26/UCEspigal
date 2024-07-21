@@ -1,20 +1,45 @@
-import { View, Text, TouchableOpacity, Image, Dimensions, Platform } from 'react-native'
-import React, { useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { View, Text, TouchableOpacity, Image, Platform, Alert } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ArrowLeftCircleIcon, MinusIcon, PlusIcon } from 'react-native-heroicons/outline';
 import { HeartIcon, StarIcon } from 'react-native-heroicons/solid';
 import { themeColors } from '../theme';
 import { ShoppingBag } from 'react-native-feather';
-const {width, height} = Dimensions.get('window');
-const ios = Platform.OS == 'ios';
+import { CartContext } from '../context/CartContext'; // Importar el contexto
 
+const ios = Platform.OS === 'ios';
 
-export default function FavouriteScreen(props) {
-  const item = props.route.params;
-  const [size, setSize] = useState('small');
+export default function ProductScreen({ route }) {
+  const item = route.params;
+  const [count, setCount] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
+  const { addToCart, cart } = useContext(CartContext); // Usar el contexto
   const navigation = useNavigation();
+
+  const handleStorePress = () => {
+    navigation.navigate('Cart');
+  };
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (!isAdded) {
+      addToCart({ ...item, count });
+      setIsAdded(true);
+      Alert.alert('Producto agregado', 'El producto ha sido agregado al carrito.');
+    }
+  };
+
   return (
     <View className="flex-1">
       <StatusBar style="light" />
@@ -58,7 +83,6 @@ export default function FavouriteScreen(props) {
         </View>
 
         <View className="px-4 space-y-4">
-          {/* <Text style={{color: themeColors.text}} className="text-lg font-bold">Detalle</Text> */}
           <Text style={{color: themeColors.text, fontSize: 18}} className="text-gray-600">
             {item.desc}
           </Text>
@@ -71,35 +95,32 @@ export default function FavouriteScreen(props) {
                 <Text style={{color: themeColors.text, fontSize: 20}} className="text-base text-gray-700 font-semibold opacity-60">
                   Cantidad 
                 </Text>
-                {/* <Text className="text-base text-black font-semibold"> {item.volume}</Text> */}
               </View>
               <View 
-                className="flex-row items-center space-x-4 border-gray-500 border rounded-full p-1 px-4">
-                <TouchableOpacity>
+              className="flex-row items-center space-x-4 border-gray-500 border rounded-full p-1 px-4">
+                <TouchableOpacity onPress={handleDecrement}>
                   <MinusIcon size="20" strokeWidth={3} color={themeColors.text} />
                 </TouchableOpacity>
-                <Text style={{color: themeColors.text}} className="font-extrabold text-lg">1</Text>
-                <TouchableOpacity>
+                <Text style={{color: themeColors.text}} className="font-extrabold text-lg">{count}</Text>
+                <TouchableOpacity onPress={handleIncrement}>
                   <PlusIcon size="20" strokeWidth={3} color={themeColors.text} />
                 </TouchableOpacity>
               </View>
-              
           </View>
 
-          {/* buy now button */}
           <View className="flex-row justify-between px-4">
-            <TouchableOpacity className="p-4 rounded-full border border-gray-400">
-              <ShoppingBag size="30" color="gray" />
+            <TouchableOpacity className="p-4 rounded-full border border-gray-400" onPress={handleStorePress}>
+              <ShoppingBag size="30" color={cart.length > 0 ? "green" : "gray"} />
             </TouchableOpacity>
-            <TouchableOpacity 
-              style={{backgroundColor: themeColors.bgLight}} 
+            <TouchableOpacity onPress={handleAddToCart} disabled={isAdded}
+              style={{backgroundColor: isAdded ? "gray" : themeColors.bgLight}} 
               className="p-4 rounded-full flex-1 ml-4">
-              <Text className="text-center text-white text-base font-semibold">Agregar al carrito</Text>
+              <Text className="text-center text-white text-base font-semibold">
+                {isAdded ? "Producto agregado" : "Agregar al carrito"}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
-        
-      
     </View>
   )
 }
